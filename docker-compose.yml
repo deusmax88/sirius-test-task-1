@@ -1,0 +1,18 @@
+version: '3.1'
+
+services:
+  app:
+    build: .
+    depends_on:
+      - db
+    links:
+      - db
+
+  db:
+    image: mysql:5.6
+    restart: always
+    volumes:
+      - ./storage/mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: testPassword
+      MYSQL_DATABASE: testdb
